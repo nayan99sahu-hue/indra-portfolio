@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indra Kumar Pathak — Social Media Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Switzer:wght@400;600;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #00ffae;
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #949494;
+  --border: #3a3a3a;
+  --red: #ff4444;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 64px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+  opacity: 0;
+  animation: fadeDown 0.8s 0.8s cubic-bezier(0.2,0.8,0.4,1) forwards;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 600; }
+.dot-ring { position: relative; width: 12px; height: 12px; flex-shrink: 0; }
+.dot-ring .outer { position: absolute; inset: 0; border-radius: 50%; background: var(--green); opacity: 0.36; box-shadow: 0 0 24px 4px var(--green); animation: pulse 2s infinite; }
+.dot-ring .inner { position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+@keyframes pulse { 0%,100%{opacity:0.36} 50%{opacity:0.7} }
+.avail { color: var(--green); font-size: 14px; }
+.nav-right { display: flex; align-items: center; gap: 28px; font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 600; }
+.nav-right a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+.nav-right a:hover { color: var(--green); }
+.nav-loc { color: var(--gray); font-size: 13px; }
+
+/* ─── HERO IMAGE ─── */
+#hero-img {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  z-index: 4; overflow: hidden; pointer-events: none;
+}
+#hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.05); /* subtle zoom like reference */
+}
+#hero-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 25%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 85%);
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; height: 100vh;
+  display: flex; align-items: flex-end;
+  padding: 0 64px 32px; z-index: 5;
+}
+.hero-content {
+  position: relative; z-index: 2; width: 67%;
+  display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 20px; height: 77vh;
+}
+.hero-exp { font-family: 'Switzer', sans-serif; font-size: 28px; font-weight: 700; color: var(--green); letter-spacing: -0.03em; line-height: 1em; opacity: 0; animation: fadeUp 0.7s 0.4s both; }
+.hero-name { font-family: 'Switzer', sans-serif; font-size: clamp(52px, 9vw, 130px); font-weight: 700; line-height: 0.9em; text-transform: uppercase; opacity: 0; animation: nameReveal 1s 0.1s cubic-bezier(0.2,0.8,0.4,1) both; }
+.hero-role { font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 600; opacity: 0; animation: fadeUp 0.7s 0.6s both; }
+.hero-quote { position: absolute; right: 0; bottom: 32px; width: 25%; min-width: 180px; font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; line-height: 1.5; text-align: justify; opacity: 0; animation: fadeUp 0.7s 0.9s both; }
+
+@keyframes nameReveal { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── CV BODY ─── */
+.cv-body { position: relative; z-index: 1; background: var(--black); padding-top: 200px; }
+.cv-section { display: flex; gap: 0; padding: 24px 64px 120px; padding-right: calc(33% + 48px); border-top: 0.5px solid var(--border); }
+.sec-label { flex: 0 0 40%; position: sticky; top: 80px; align-self: flex-start; font-family: 'Switzer', sans-serif; font-size: clamp(16px, 2vw, 32px); font-weight: 700; text-transform: uppercase; line-height: 1em; }
+.sec-body { flex: 1; min-width: 0; }
+
+/* ─── CONTENT ─── */
+.entries { display: flex; flex-direction: column; gap: 72px; }
+.entry { display: flex; flex-direction: column; gap: 10px; }
+.entry-meta { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--gray); }
+.entry-title { font-family: 'Switzer', sans-serif; font-size: 22px; font-weight: 700; }
+.entry-desc { font-family: 'Switzer', sans-serif; font-size: 15px; color: var(--gray); line-height: 1.65; }
+.entry-desc ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.about-text { font-family: 'Switzer', sans-serif; font-size: 16px; color: var(--gray); line-height: 1.7; }
+
+/* ─── SKILLS ─── */
+.skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill { font-family: 'Switzer', sans-serif; font-size: 14px; color: var(--white); padding: 4px 12px 5px; border: 1px solid #666; border-bottom-width: 2px; border-radius: 8px; cursor: default; opacity: 0; transform: translateY(6px); transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s, color 0.2s; }
+.skill.in { opacity: 1; transform: translateY(0); }
+.skill:hover { background: var(--white); color: var(--black); }
+
+/* ─── PROJECT ─── */
+.proj-list { display: flex; flex-direction: column; gap: 20px; }
+.proj-card { display: flex; flex-direction: column; gap: 12px; border: 1px solid #444; border-bottom-width: 2px; border-radius: 12px; padding: 20px; transition: border-color 0.2s; }
+.proj-card:hover { border-color: var(--green); }
+.proj-title { font-family: 'Switzer', sans-serif; font-size: 20px; font-weight: 700; }
+.proj-meta { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray); }
+.proj-desc { font-family: 'Switzer', sans-serif; font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* ─── CONTACT ─── */
+.contact-list { display: flex; flex-direction: column; gap: 36px; }
+.contact-item { display: flex; flex-direction: column; gap: 6px; }
+.contact-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--gray); }
+.contact-value { font-family: 'Switzer', sans-serif; font-size: 22px; font-weight: 700; display: flex; flex-direction: column; gap: 4px; }
+.contact-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+.contact-value a:hover { color: var(--green); }
+
+/* ════════════════════════════════════════════
+   WORK SHOWCASE
+════════════════════════════════════════════ */
+.showcase-section {
+  position: relative; z-index: 1;
+  background: var(--black);
+  border-top: 0.5px solid var(--border);
+  padding: 60px 0 100px;
+}
+.showcase-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 64px 44px;
+}
+.showcase-title { font-family: 'Switzer', sans-serif; font-size: clamp(16px, 2vw, 32px); font-weight: 700; text-transform: uppercase; }
+.showcase-count { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--gray); letter-spacing: 0.05em; }
+
+/* Scrollable track */
+.reels-outer {
+  overflow-x: auto; overflow-y: visible;
+  scrollbar-width: none; cursor: grab;
+  user-select: none;
+  padding: 8px 64px 24px;
+}
+.reels-outer:active { cursor: grabbing; }
+.reels-outer::-webkit-scrollbar { display: none; }
+.reels-track { display: flex; gap: 16px; width: max-content; align-items: stretch; }
+
+/* ── Instagram card ── */
+.card-ig {
+  flex: 0 0 255px; height: 460px;
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid #252525;
+  background: #0c0c0c;
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  text-decoration: none; color: inherit;
+  position: relative;
+}
+.card-ig:hover { border-color: var(--green); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,255,174,0.1); }
+
+.c-thumb { flex: 1; position: relative; overflow: hidden; background: #111; }
+.c-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease, filter 0.3s; filter: grayscale(20%); }
+.card-ig:hover .c-thumb img { transform: scale(1.06); filter: grayscale(0%); }
+
+.c-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  display: flex; align-items: flex-end; padding: 14px;
+}
+.ig-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em; color: #fff;
+  background: rgba(225,48,108,0.2); border: 1px solid rgba(225,48,108,0.55);
+  padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(6px);
+}
+.ig-pill svg { width: 12px; height: 12px; fill: #e1306c; flex-shrink: 0; }
+
+.play-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px; height: 54px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.45);
+  background: rgba(0,0,0,0.3); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.card-ig:hover .play-btn { border-color: var(--green); background: rgba(0,255,174,0.15); transform: translate(-50%,-50%) scale(1.1); }
+.play-btn svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+
+.c-foot { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #1e1e1e; }
+.c-label { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); }
+
+.watch-btn {
+  font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--green); border: 1px solid var(--green);
+  padding: 4px 12px; border-radius: 20px;
+  transition: background 0.2s, color 0.2s;
+}
+.card-ig:hover .watch-btn { background: var(--green); color: var(--black); }
+
+/* ── YouTube card ── */
+.card-yt {
+  flex: 0 0 390px; height: 460px;
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid #252525;
+  background: #0c0c0c;
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.card-yt:hover { border-color: var(--red); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(255,68,68,0.1); }
+
+.yt-wrap { flex: 1; position: relative; background: #000; overflow: hidden; }
+.yt-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
+
+.yt-foot { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #1e1e1e; }
+.yt-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--red); border: 1px solid rgba(255,68,68,0.5);
+  padding: 4px 10px; border-radius: 20px;
+}
+.yt-pill svg { width: 12px; height: 12px; fill: var(--red); flex-shrink: 0; }
+
+.open-btn {
+  font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--red); border: 1px solid var(--red);
+  padding: 4px 12px; border-radius: 20px;
+  text-decoration: none; display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+.open-btn:hover { background: var(--red); color: #fff; }
+
+/* Nav row */
+.reels-nav { display: flex; align-items: center; gap: 12px; padding: 16px 64px 0; }
+.drag-hint {
+  font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray);
+  display: flex; align-items: center; gap: 8px;
+}
+.drag-hint::before { content:''; display:block; width:28px; height:1px; background:var(--gray); }
+.reel-arrows { display: flex; gap: 8px; margin-left: auto; }
+.arr-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid #444; background: transparent;
+  color: var(--white); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; line-height: 1;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.arr-btn:hover { border-color: var(--green); background: rgba(0,255,174,0.1); color: var(--green); }
+
+/* ─── THANKS + FOOTER ─── */
+.thanks-wrap { position: relative; z-index: 2; background: var(--black); padding: 160px 64px 0; display: flex; align-items: flex-end; justify-content: space-between; }
+.thanks-big { font-family: 'Switzer', sans-serif; font-size: clamp(60px, 10vw, 150px); font-weight: 700; line-height: 0.9em; text-transform: uppercase; }
+.thanks-sub { font-family: 'Switzer', sans-serif; font-size: 28px; font-weight: 700; line-height: 1em; letter-spacing: -0.03em; color: var(--green); text-align: right; padding-bottom: 8px; }
+footer { position: relative; z-index: 2; background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 32px 64px 48px; border-top: 0.5px solid #222; margin-top: 64px; }
+.footer-copy { font-family: 'Switzer', sans-serif; font-size: 12px; color: var(--gray); }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.blur-reveal { opacity: 0; transform: translateY(12px); filter: blur(8px); transition: opacity 0.6s ease, transform 0.6s ease, filter 0.6s ease; }
+.blur-reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  nav { padding: 16px 20px; }
+  .nav-loc { display: none; }
+  .hero { padding: 0 20px 24px; }
+  .hero-content { width: 100%; }
+  .hero-name { font-size: clamp(48px, 13vw, 80px); }
+  .hero-quote { display: none; }
+  #hero-img { position: absolute !important; top:0 !important; left:0 !important; width:100% !important; height:100vh !important; }
+  .cv-section { flex-direction: column; gap: 28px; padding: 20px 20px 60px; }
+  .sec-label { position: static; flex: none; }
+  .showcase-header { padding: 0 20px 32px; }
+  .reels-outer { padding: 8px 20px 16px; }
+  .reels-nav { padding: 12px 20px 0; }
+  .thanks-wrap { flex-direction: column; gap: 20px; padding: 80px 20px 0; }
+  .thanks-sub { text-align: left; }
+  footer { flex-direction: column; gap: 12px; padding: 24px 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO BG -->
+<div id="hero-img">
+  <img src="IMG_1016.PNG?w=1400&q=85" alt="background">
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    Indra Kumar Pathak
+    <div class="dot-ring"><div class="outer"></div><div class="inner"></div></div>
+    <span class="avail">Open to work</span>
+  </div>
+  <div class="nav-right">
+    <a href="mailto:indrapathak224@gmail.com">Contact Me</a>
+    <span class="nav-loc">Indore, MP · India</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-exp">2023 → 2026<br>2.5+ yrs exp.</div>
+    <div class="hero-name">Indra<br>Kumar<br>Pathak</div>
+    <div class="hero-role">Social Media Manager &amp; Content Strategist, based in Indore</div>
+  </div>
+  <div class="hero-quote">" Performance-driven storyteller crafting strategies that grow brands, drive engagement, and turn content into measurable impact. "</div>
+</section>
+
+<!-- CV BODY -->
+<div class="cv-body" id="cv-body">
+
+  <!-- 01 ABOUT -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">01. About</div>
+    <div class="sec-body">
+      <p class="about-text reveal">Performance-driven Social Media Manager with 2.5 years of experience building and executing content strategies for brands, influencers, and tech-focused organizations. Skilled in planning content calendars, creating high-engagement reels and campaigns, tracking analytics, and optimizing performance for growth. Experienced in aligning organic strategy with paid campaigns and driving measurable improvements in reach, engagement, and brand visibility.</p>
+    </div>
+  </div>
+
+  <!-- 02 EXPERIENCE -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">02. Experience</div>
+    <div class="sec-body">
+      <div class="entries">
+
+        <div class="entry reveal">
+          <div class="entry-meta">TractorGyan &nbsp;•&nbsp; Indore &nbsp;•&nbsp; Nov 2025 – Present</div>
+          <div class="entry-title">Social Media Manager &amp; Content Strategist</div>
+          <div class="entry-desc"><ul>
+            <li>Develop and execute monthly social media strategies aligned with brand positioning.</li>
+            <li>Plan and manage content calendars across Instagram and LinkedIn.</li>
+            <li>Create engaging posts, reels, and campaign-based content to improve reach and audience interaction.</li>
+            <li>Monitor analytics — reach, engagement rate, saves, impressions — to optimise performance.</li>
+            <li>Coordinate with paid marketing team to align organic creatives with ad objectives.</li>
+            <li>Implement trend-based content ideas to maintain relevance and increase visibility.</li>
+          </ul></div>
+        </div>
+
+        <div class="entry reveal">
+          <div class="entry-meta">Engineer Sahab Education &nbsp;•&nbsp; Indore &nbsp;•&nbsp; Jun – Oct 2025</div>
+          <div class="entry-title">SMM &amp; Content Creator &amp; Strategist</div>
+          <div class="entry-desc"><ul>
+            <li>Planned and executed structured content strategies for tech education domains including UI/UX, Data Analytics, Data Science, and MERN Stack.</li>
+            <li>Produced educational video content and storytelling-based reels to improve student engagement.</li>
+            <li>Conducted topic research and keyword planning to support organic growth.</li>
+            <li>Improved consistency in brand voice across digital platforms.</li>
+          </ul></div>
+        </div>
+
+        <div class="entry reveal">
+          <div class="entry-meta">Social Squad &nbsp;•&nbsp; Indore &nbsp;•&nbsp; Oct 2024 – Mar 2025</div>
+          <div class="entry-title">Content Strategist &amp; Social Media Manager</div>
+          <div class="entry-desc"><ul>
+            <li>Managed content strategy for brands and a 202K+ follower influencer.</li>
+            <li>Created campaign-based content aligned with audience growth goals.</li>
+            <li>Increased engagement through performance-driven storytelling and trend integration.</li>
+            <li>Analyzed platform insights to refine posting strategy and improve content impact.</li>
+          </ul></div>
+        </div>
+
+        <div class="entry reveal">
+          <div class="entry-meta">UpstartAi &nbsp;•&nbsp; Bhopal &nbsp;•&nbsp; Oct 2023 – Sep 2024</div>
+          <div class="entry-title">Content &amp; Social Media Executive</div>
+          <div class="entry-desc"><ul>
+            <li>Executed social media campaigns focused on brand awareness and engagement.</li>
+            <li>Assisted in keyword research and audience analysis.</li>
+            <li>Collaborated with internal teams to ensure consistent messaging.</li>
+          </ul></div>
+        </div>
+
+        <div class="entry reveal">
+          <div class="entry-meta">CodersID &nbsp;•&nbsp; Indore &nbsp;•&nbsp; Sep 2023</div>
+          <div class="entry-title">Digital Marketer</div>
+          <div class="entry-desc">Created promotional content and marketing creatives to enhance brand visibility.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 SKILLS -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">03. Skills</div>
+    <div class="sec-body"><div class="skills-grid" id="skillsGrid"></div></div>
+  </div>
+
+  <!-- 04 EDUCATION -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">04. Education</div>
+    <div class="sec-body">
+      <div class="entries">
+        <div class="entry reveal">
+          <div class="entry-meta">Vivekananda College, Lakhnadon &nbsp;•&nbsp; 2020 – 2023</div>
+          <div class="entry-title">Bachelor of Commerce (B.Com)</div>
+          <div class="entry-desc">Studied commerce fundamentals, business communication, and management principles — building a strong foundation for strategic brand and marketing work.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 PROJECTS -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">05. Projects</div>
+    <div class="sec-body">
+      <div class="proj-list">
+        <div class="proj-card reveal">
+          <div class="proj-title">Kalyug — Short Film Script</div>
+          <div class="proj-meta">Based on a True Incident &nbsp;•&nbsp; Feb 2025 – Jan 2026</div>
+          <div class="proj-desc">Wrote an original short film screenplay inspired by a real-life incident. Developed character arcs, emotional storytelling structure, and scene breakdown. Focused on realistic dialogue and narrative flow to create strong audience connection. Applied storytelling frameworks to build tension, conflict, and resolution within a short format.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 CONTACT -->
+  <div class="cv-section">
+    <div class="sec-label blur-reveal">06. Contact</div>
+    <div class="sec-body">
+      <div class="contact-list">
+        <div class="contact-item reveal">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:+919067704013">+91 9067704013</a></div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:indrapathak224@gmail.com">indrapathak224@gmail.com</a></div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Indore, Madhya Pradesh</div>
+        </div>
+        <div class="contact-item reveal">
+          <div class="contact-label">Socials</div>
+          <div class="contact-value">
+            <a href="https://linkedin.com/in/indra-pathak" target="_blank">LinkedIn ↗</a>
+            <a href="https://instagram.com/indra_pathak" target="_blank">Instagram ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /cv-body -->
+
+<!-- ══════════════════════════════════
+     07. WORK SHOWCASE
+══════════════════════════════════ -->
+<section class="showcase-section">
+
+  <div class="showcase-header reveal">
+    <div class="showcase-title">07. Work Showcase</div>
+    <div class="showcase-count">6 Reels &nbsp;+&nbsp; 2 Videos</div>
+  </div>
+
+  <div class="reels-outer" id="reelsOuter">
+    <div class="reels-track">
+
+      <!-- IG 1 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DM-bOZbNgdt/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&q=80" alt="Reel 1">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #1</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+      <!-- IG 2 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DNQ4sSbT_MU/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&q=80" alt="Reel 2">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #2</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+      <!-- IG 3 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DNTbTiFtmnu/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80" alt="Reel 3">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #3</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+      <!-- YT 1 — autoplay muted -->
+      <div class="card-yt">
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/34kCAAzLhCs?autoplay=1&mute=1&loop=1&playlist=34kCAAzLhCs&controls=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="YouTube Video 1"></iframe>
+        </div>
+        <div class="yt-foot">
+          <span class="yt-pill"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube · Video 1</span>
+          <a class="open-btn" href="https://youtu.be/34kCAAzLhCs" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+
+      <!-- IG 4 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DNiw4S8Ti-W/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=400&q=80" alt="Reel 4">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #4</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+      <!-- IG 5 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DMIKUvITbOZ/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1579869847514-7c1a19d2d2ad?w=400&q=80" alt="Reel 5">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #5</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+      <!-- YT 2 — autoplay muted -->
+      <div class="card-yt">
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/1wM8ixogeWg?autoplay=1&mute=1&loop=1&playlist=1wM8ixogeWg&controls=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="YouTube Video 2"></iframe>
+        </div>
+        <div class="yt-foot">
+          <span class="yt-pill"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube · Video 2</span>
+          <a class="open-btn" href="https://youtu.be/1wM8ixogeWg" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+
+      <!-- IG 6 -->
+      <a class="card-ig" href="https://www.instagram.com/reel/DMK2cVXyFm2/" target="_blank" rel="noopener">
+        <div class="c-thumb">
+          <img src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=400&q=80" alt="Reel 6">
+          <div class="c-overlay">
+            <span class="ig-pill"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</span>
+          </div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="c-foot"><span class="c-label">Reel #6</span><span class="watch-btn">Watch ↗</span></div>
+      </a>
+
+    </div><!-- /reels-track -->
+  </div><!-- /reels-outer -->
+
+  <div class="reels-nav">
+    <span class="drag-hint">Drag to explore all 8 pieces</span>
+    <div class="reel-arrows">
+      <button class="arr-btn" id="arrLeft">&#8592;</button>
+      <button class="arr-btn" id="arrRight">&#8594;</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- THANKS -->
+<div class="thanks-wrap">
+  <div class="thanks-big reveal">Thanks<br>for being<br>here</div>
+  <div class="thanks-sub reveal">Let's create<br>something<br>great</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Indra Kumar Pathak. All rights reserved.</span>
+  <span class="footer-copy">indrapathak224@gmail.com</span>
+</footer>
+
+<script>
+// SKILLS
+const skills = ["Social Media Strategy","Content Calendar Planning","Reels & Campaign Creation","Copywriting","Brand Voice Development","Trend Research & Implementation","Audience Growth Strategy","Instagram","LinkedIn","Analytics & Insights","Paid & Organic Alignment","Storytelling","Keyword Research","Performance Optimization","Influencer Content","Video Content Production","Community Engagement","Campaign Management"];
+const grid = document.getElementById('skillsGrid');
+skills.forEach((s,i) => {
+  const el = document.createElement('span');
+  el.className = 'skill';
+  el.textContent = s;
+  el.style.transitionDelay = (i*40)+'ms';
+  grid.appendChild(el);
+});
+
+// HERO PANEL SCROLL
+const heroImg = document.getElementById('hero-img');
+const heroEl  = document.getElementById('hero');
+function ease(t){ t=Math.max(0,Math.min(1,t)); return t<0.5?2*t*t:-1+(4-2*t)*t; }
+let ticking=false;
+function updatePanel(){
+  ticking=false;
+  const e=ease(window.scrollY/heroEl.offsetHeight);
+  heroImg.style.left=(e*67)+'%';
+  heroImg.style.width=(100-e*67)+'%';
+  heroImg.querySelector('img').style.transform='scale('+(0.92+0.08*e)+')';
+}
+window.addEventListener('scroll',()=>{ if(!ticking){requestAnimationFrame(updatePanel);ticking=true;} },{passive:true});
+window.addEventListener('resize',updatePanel,{passive:true});
+updatePanel();
+
+// DRAG SCROLL
+const outer=document.getElementById('reelsOuter');
+let down=false,sx=0,sl=0;
+outer.addEventListener('mousedown',e=>{ down=true; sx=e.pageX; sl=outer.scrollLeft; outer.style.cursor='grabbing'; });
+window.addEventListener('mouseup',()=>{ down=false; outer.style.cursor='grab'; });
+window.addEventListener('mousemove',e=>{ if(!down)return; e.preventDefault(); outer.scrollLeft=sl-(e.pageX-sx); });
+document.getElementById('arrLeft').onclick=()=>outer.scrollBy({left:-320,behavior:'smooth'});
+document.getElementById('arrRight').onclick=()=>outer.scrollBy({left:320,behavior:'smooth'});
+
+// INTERSECTION OBSERVER
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.blur-reveal,.skill').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
