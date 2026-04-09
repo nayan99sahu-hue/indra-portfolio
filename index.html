@@ -133,23 +133,24 @@ justify-content: flex-end; gap: 20px; height: 77vh;
    WORK SHOWCASE
 ════════════════════════════════════════════ */
 .showcase-section {
-position: relative; z-index: 1;
-background: var(--black);
-border-top: 0.5px solid var(--border);
-padding: 60px 0 100px;
+  position: relative; z-index: 1;
+  background: var(--black);
+  border-top: 0.5px solid var(--border);
+  padding: 24px 64px 120px;
+  padding-right: calc(33% + 48px);
 }
 .showcase-header {
-display: flex; align-items: flex-end; justify-content: space-between;
-padding: 0 64px 44px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 0 44px;
 }
 .showcase-title { font-family: 'Switzer', sans-serif; font-size: clamp(16px, 2vw, 32px); font-weight: 700; text-transform: uppercase; }
 .showcase-count { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--gray); letter-spacing: 0.05em; }
 /* Scrollable track */
 .reels-outer {
-overflow-x: auto; overflow-y: visible;
-scrollbar-width: none; cursor: grab;
-user-select: none;
-padding: 8px 64px 24px;
+  overflow-x: auto; overflow-y: visible;
+  scrollbar-width: none; cursor: grab;
+  user-select: none;
+  padding: 8px 0 24px;
 }
 .reels-outer:active { cursor: grabbing; }
 .reels-outer::-webkit-scrollbar { display: none; }
@@ -237,8 +238,9 @@ transition: background 0.2s, color 0.2s;
 
 /* CHANGE 3: Classy nav row for section 7 */
 .reels-nav {
-display: flex; align-items: center; gap: 12px;
-padding: 28px 64px 0;
+  display: flex; align-items: center; gap: 12px;
+  padding: 28px 0 0 355px;
+  justify-content: flex-start;
 }
 .drag-hint {
 font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700;
@@ -246,7 +248,7 @@ text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray);
 display: flex; align-items: center; gap: 10px;
 }
 .drag-hint::before { content:''; display:block; width:36px; height:1px; background: linear-gradient(to right, transparent, var(--gray)); }
-.reel-arrows { display: flex; gap: 10px; margin-left: auto; }
+.reel-arrows { display: flex; gap: 15px; margin-left: 2; }
 .arr-btn {
 width: 48px; height: 48px; border-radius: 50%;
 border: 1px solid #333;
@@ -312,6 +314,7 @@ nav { padding: 16px 20px; }
 #hero-img { position: absolute !important; top:0 !important; left:0 !important; width:100% !important; height:100vh !important; }
 .cv-section { flex-direction: column; gap: 28px; padding: 20px 20px 60px; }
 .sec-label { position: static; flex: none; }
+.showcase-section { padding: 20px 20px 60px; }
 .showcase-header { padding: 0 20px 32px; }
 .reels-outer { padding: 8px 20px 16px; }
 .reels-nav { padding: 16px 20px 0; }
@@ -333,7 +336,7 @@ footer { flex-direction: column; gap: 12px; padding: 24px 20px; text-align: cent
   <span class="avail">Open to work</span>
 </div>
 <div class="nav-right">
-<a href="mailto:indrapathak224@gmail.com">Contact Me</a>
+<a href="https://wa.me/919067704013" target="_blank" rel="noopener">Contact Me</a>
 <span class="nav-loc">Indore, MP · India</span>
 </div>
 </nav>
@@ -571,7 +574,6 @@ footer { flex-direction: column; gap: 12px; padding: 24px 20px; text-align: cent
   </div><!-- /reels-outer -->
   
   <div class="reels-nav">
-  <span class="drag-hint">Drag to explore all 8 pieces</span>
   <div class="reel-arrows">
   <button class="arr-btn" id="arrLeft"><span>&#8592;</span></button>
   <button class="arr-btn" id="arrRight"><span>&#8594;</span></button>
